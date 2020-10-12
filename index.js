@@ -1,2 +1,4 @@
-const a = 'hello';
-console.log(a);
+const isVowel = (chart) => 'eiou'.includes(chart)
+module.exports = {
+ isVowel
+}
