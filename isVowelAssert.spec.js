@@ -2,22 +2,29 @@ const { isVowel } = require('.');
 const assert = require('assert');
 
 let failures = 0;
-console.log('isVowel return true "a" for input "a"');
-try {
+const tests = [];
+//Regiters all test 
+const test = (name, fn) => { 
+    tests.push({name, fn})
+};
+
+test('isVowel return true "a" for input "a"', () => { 
     assert.ok(isVowel('a'))
-} catch (error) {
-    console.log('FAIL');
-    failures += 1;
-}
-
-
-console.log('isVowel return false para input "C"');
-try {
+})
+test('isVowel return false para input "C"', () => { 
     assert.equal(isVowel('c'), false)
-} catch (error) {
-    console.log('FAIL');
-    failures += 1;
-}
+})
+
+tests.forEach(({ name, fn}) => { 
+    console.log(name);
+    try {
+        fn()
+    } catch (error) {
+        console.error(`Expected ${error.expected} but got ${error.actual}` );
+        failures += 1;
+    }
+})
+
 
 if (failures>0) { 
     console.error(failures);
